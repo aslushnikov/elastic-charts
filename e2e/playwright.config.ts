@@ -14,6 +14,7 @@ expect.extend(pwExpect.matchers);
 const isCI = process.env.CI === 'true';
 
 const config: PlaywrightTestConfig = {
+  updateSnapshots: 'all',
   use: {
     headless: true,
     locale: 'en-us',
@@ -49,6 +50,14 @@ const config: PlaywrightTestConfig = {
       name: 'chrome',
       use: {
         browserName: 'chromium',
+        launchOptions: {
+          args: [
+            '--font-render-hinting=none',
+            '--disable-skia-runtime-opts',
+            '--disable-font-subpixel-positioning',
+            '--disable-lcd-text',
+          ],
+        }
       },
     },
   ],
